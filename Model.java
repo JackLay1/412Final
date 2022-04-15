@@ -80,8 +80,14 @@ public class Model {
 	}
 
 	public boolean draw() {
-		//TODO
-		return false;
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				if(board[row][col].equals(Piece.None)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public char[][] getBoard() {
@@ -116,6 +122,4 @@ public class Model {
 	public void quit() {
 		//TODO
 	}
-
-
 }
