@@ -18,6 +18,16 @@ public class Model {
 			}
 		}
 
+		public char toChar() {
+			switch(this) {
+				case Nought: return 'O';
+				case Cross: return 'X';
+				case None: return ' ';
+				default: throw new IllegalArgumentException();
+			}
+		}
+
+
 		public static Piece fromString(String value) {
 			switch(value) {
 				case "O": return Piece.Nought;
@@ -75,8 +85,13 @@ public class Model {
 	}
 
 	public char[][] getBoard() {
-		//TODO
-		return null;
+		char[][] retval = new char[3][3];
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				retval[row][col] = board[row][col].toChar();
+			}
+		}
+		return retval;
 	}
 
 	public void sendMove(int row, int col) {
