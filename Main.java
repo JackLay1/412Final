@@ -56,7 +56,9 @@ public class Main {
         }
     }
     public void clicked(JButton b){
-        check();
+        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
+        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
+        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
         if (count % 2 == 0) {
             b.setText("x");
             b.setFont(new Font("Arial", Font.BOLD, 70));
@@ -117,110 +119,110 @@ public class Main {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b1);
                 container.setEnabled(false);
-                if (count % 2 == 0) {
+                if (count % 2 != 0) {
                     game[0][0] = 'x';
                 }
                 else {
                     game[0][0] = 'O';
                 }
+                clicked(b1);
             }
         });
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b2);
-                if (count % 2 == 0) {
+                if (count % 2 != 0) {
                     game[0][1] = 'x';
                 }
                 else {
                     game[0][1] = 'O';
                 }
+                clicked(b2);
             }
         });
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b3);
                 if (count % 2 == 0) {
                     game[0][2] = 'x';
                 }
                 else {
                     game[0][2] = 'O';
                 }
+                clicked(b3);
             }
         });
         b4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b4);
                 if (count % 2 == 0) {
                     game[1][0] = 'x';
                 }
                 else {
                     game[1][0] = 'O';
                 }
+                clicked(b4);
             }
         });
         b5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b5);
                 if (count % 2 == 0) {
                     game[1][1] = 'x';
                 }
                 else {
                     game[1][1] = 'O';
                 }
+                clicked(b5);
             }
         });
         b6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b6);
                 if (count % 2 == 0) {
                     game[1][2] = 'x';
                 }
                 else {
                     game[1][2] = 'O';
                 }
+                clicked(b6);
             }
         });
         b7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b7);
                 if (count % 2 == 0) {
                     game[2][0] = 'x';
                 }
                 else {
                     game[2][0] = 'O';
                 }
+                clicked(b7);
             }
         });
         b8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b8);
                 if (count % 2 == 0) {
                     game[2][1] = 'x';
                 }
                 else {
                     game[2][1] = 'O';
                 }
+                clicked(b8);
             }
         });
         b9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b9);
                 if (count % 2 == 0) {
                     game[2][2] = 'x';
                 }
                 else {
                     game[2][2] = 'O';
                 }
+                clicked(b9);
             }
         });
 

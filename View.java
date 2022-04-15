@@ -7,6 +7,18 @@ public class View {
     char game[][] = new char[3][3];
     int count = 0;
     JButton blist[] = new JButton[9];
+    public static void mmenu(){
+        JFrame frame = new JFrame();
+        frame.setSize(600,600);
+        JPanel container = new JPanel();
+        JTextField ip = new JTextField();
+        JButton send = new JButton();
+        send.setText("SEND REQUEST");
+        container.add(ip);
+        container.add(send);
+        frame.add(container, BorderLayout.CENTER);
+        frame.setVisible(true);
+    }
     public void go(){
         JFrame frame = new JFrame();
         frame.setSize(600,600);
@@ -156,5 +168,9 @@ public class View {
 
 
 
+    }
+
+    public static void main(String[] args) {
+        mmenu();
     }
 }
