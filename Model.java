@@ -61,8 +61,7 @@ public class Model {
 	}
 
 	public boolean hasEnded() {
-		//TODO
-		return true;
+		return winner() != ' ' || draw();
 	}
 
 	public char winner() {
