@@ -5,9 +5,17 @@ import java.awt.event.ActionListener;
 
 public class View {
     JButton[][] buttons = new JButton[3][3];
+    JButton quit = new JButton("Close");
+    JButton again = new JButton("PLAY AGAIN");
     char game[][] = new char[3][3];
     int count = 0;
     JButton blist[] = new JButton[9];
+    public void halt(){
+        System.out.println("Halting");
+        for(int i=0; i<9; i++){
+            blist[i].setEnabled(false);
+        }
+    }
     public void clicked(JButton b){
         if (count % 2 == 0) {
             b.setText("x");
