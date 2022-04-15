@@ -65,7 +65,7 @@ public class Model {
 
 	//UML
 	
-	public boolean move(int row, int col, char piece) {
+	public boolean move(int row, int col) {
 		//TODO
 		return false;
 	}
@@ -100,7 +100,7 @@ public class Model {
 		return retval;
 	}
 
-	public void sendMove(int row, int col) {
+	void sendMove(int row, int col) {
 		//TODO
 	}
 
