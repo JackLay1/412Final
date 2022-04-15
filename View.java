@@ -8,15 +8,34 @@ public class View {
     char game[][] = new char[3][3];
     int count = 0;
     JButton blist[] = new JButton[9];
+    public void clicked(JButton b){
+        if (count % 2 == 0) {
+            b.setText("x");
+            b.setFont(new Font("WINGDINGS", Font.BOLD, 70));
+            b.setEnabled(false);
+            count++;
+        }
+        else {
+            b.setText("O");
+            b.setFont(new Font("COMIC SANS", Font.BOLD, 69));
+            b.setEnabled(false);
+            count++;
+        }
+        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
+        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
+        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
+    }
     public void mmenu(){
         JFrame frame = new JFrame();
         frame.setSize(600,600);
-        JPanel container = new JPanel();
+        JPanel container = new JPanel(new GridLayout(2,1));
         JTextField ip = new JTextField();
-        JButton send = new JButton();
-        send.setText("SEND REQUEST");
-        frame.add(ip, BorderLayout.SOUTH);
-        frame.add(send, BorderLayout.CENTER);
+        JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
+        JButton send = new JButton("SEND REQUEST");
+        container.add(prompt);
+        container.add(ip);
+        frame.add(send, BorderLayout.EAST);
+        frame.add(container, BorderLayout.CENTER);
         frame.setVisible(true);
 
         send.addActionListener(new ActionListener() {
@@ -26,6 +45,7 @@ public class View {
                 System.out.println(pip);
             }
         });
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void go(){
         JFrame frame = new JFrame();
