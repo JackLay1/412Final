@@ -1,4 +1,5 @@
 import java.net.ServerSocket;
+import java.util.Random;
 import java.io.IOException;
 
 public class Model {
@@ -114,9 +115,15 @@ public class Model {
 		return false;
 	}
 
-	public char firstPlayer() {
-		//TODO
-		return ' ';
+	public boolean amIFirstPlayer() {
+		Random r = new Random();
+		Boolean amIFirst = r.nextBoolean();
+		if(amIFirst) {
+			me = Piece.Cross;
+		} else {
+			me = Piece.Nought;
+		}
+		return amIFirst;
 	}
 
 	public void quit() {
