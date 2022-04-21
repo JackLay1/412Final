@@ -5,12 +5,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class View {
-    JButton[][] buttons = new JButton[3][3];
+    JTextField ip = new JTextField();
+    JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
+    JButton send = new JButton("SEND REQUEST");
     JButton quit = new JButton("QUIT");
     JButton again = new JButton("PLAY AGAIN");
+    JPanel container21 = new JPanel(new GridLayout(2,1));
+
+    JButton[][] buttons = new JButton[3][3];
     char game[][] = new char[3][3];
     int count = 1;
     JButton blist[] = new JButton[9];
+
     public void halt(){
         for(int i=0; i<9; i++){
             blist[i].setEnabled(false);
@@ -36,18 +42,12 @@ public class View {
         System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
     }
     public void go(){
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Tx3");
         frame.setSize(600,600);
-
-        JPanel container = new JPanel(new GridLayout(2,1));
-        JTextField ip = new JTextField();
-        JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
-        JButton send = new JButton("SEND REQUEST");
-        container.add(prompt);
-        container.add(ip);
+        container21.add(prompt);
+        container21.add(ip);
         frame.add(send, BorderLayout.EAST);
-        frame.add(container, BorderLayout.CENTER);
-
+        frame.add(container21, BorderLayout.CENTER);
 
         frame.setVisible(true);
 
@@ -55,6 +55,8 @@ public class View {
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String pip = ip.getText();
+                System.out.println(pip);
                 frame.getContentPane().removeAll();
                 JPanel container = new JPanel();
                 container.setLayout(new GridLayout(3,3));
@@ -241,28 +243,14 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
-                JPanel container = new JPanel(new GridLayout(2,1));
-                JTextField ip = new JTextField();
-                JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
-                JButton send = new JButton("SEND REQUEST");
-                container.add(prompt);
-                container.add(ip);
+                container21.add(prompt);
+                container21.add(ip);
                 frame.add(send, BorderLayout.EAST);
-                frame.add(container, BorderLayout.CENTER);
+                frame.add(container21, BorderLayout.CENTER);
                 frame.repaint();
                 frame.validate();
-
-                send.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        String pip = ip.getText();
-                        System.out.println(pip);
-                    }
-                });
-
             }
         });
-
     }
     public void change(int b){
         blist[b].setEnabled(false);
