@@ -2,24 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 public class View {
     JButton[][] buttons = new JButton[3][3];
     JButton quit = new JButton("Close");
     JButton again = new JButton("PLAY AGAIN");
     char game[][] = new char[3][3];
-    int count = 0;
+    int count = 1;
     JButton blist[] = new JButton[9];
     public void halt(){
-        System.out.println("Halting");
         for(int i=0; i<9; i++){
             blist[i].setEnabled(false);
         }
     }
     public void clicked(JButton b){
-        if (count % 2 == 0) {
+        if (count % 2 == 1) {
             b.setText("x");
-            b.setFont(new Font("WINGDINGS", Font.BOLD, 70));
+            b.setFont(new Font("ARIAL", Font.BOLD, 70));
             b.setEnabled(false);
             count++;
         }
@@ -29,36 +29,17 @@ public class View {
             b.setEnabled(false);
             count++;
         }
+    }
+    public void updateBoard(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
         System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
         System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
-    }
-    public void mmenu(){
-        JFrame frame = new JFrame();
-        frame.setSize(600,600);
-        JPanel container = new JPanel(new GridLayout(2,1));
-        JTextField ip = new JTextField();
-        JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
-        JButton send = new JButton("SEND REQUEST");
-        container.add(prompt);
-        container.add(ip);
-        frame.add(send, BorderLayout.EAST);
-        frame.add(container, BorderLayout.CENTER);
-        frame.setVisible(true);
-
-        send.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String pip = ip.getText();
-                System.out.println(pip);
-            }
-        });
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void go(){
         JFrame frame = new JFrame();
         frame.setSize(600,600);
         JPanel container = new JPanel();
+        JPanel buttonss = new JPanel();
         container.setLayout(new GridLayout(3,3));
         JButton b1 = new JButton();
         blist[0] = b1;
@@ -97,11 +78,13 @@ public class View {
         container.add(b8);
         container.add(b9);
         frame.add(container, BorderLayout.CENTER);
+        buttonss.add(again);
+        buttonss.add(quit);
+        frame.add(buttonss, BorderLayout.EAST);
         frame.setVisible(true);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        /*b1.addActionListener(new ActionListener() {
+        b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(b1);
@@ -112,6 +95,7 @@ public class View {
                 else {
                     game[0][0] = 'O';
                 }
+                updateBoard();
             }
         });
         b2.addActionListener(new ActionListener() {
@@ -124,6 +108,7 @@ public class View {
                 else {
                     game[0][1] = 'O';
                 }
+                updateBoard();
             }
         });
         b3.addActionListener(new ActionListener() {
@@ -136,6 +121,7 @@ public class View {
                 else {
                     game[0][2] = 'O';
                 }
+                updateBoard();
             }
         });
         b4.addActionListener(new ActionListener() {
@@ -148,6 +134,7 @@ public class View {
                 else {
                     game[1][0] = 'O';
                 }
+                updateBoard();
             }
         });
         b5.addActionListener(new ActionListener() {
@@ -160,6 +147,7 @@ public class View {
                 else {
                     game[1][1] = 'O';
                 }
+                updateBoard();
             }
         });
         b6.addActionListener(new ActionListener() {
@@ -172,6 +160,7 @@ public class View {
                 else {
                     game[1][2] = 'O';
                 }
+                updateBoard();
             }
         });
         b7.addActionListener(new ActionListener() {
@@ -184,6 +173,7 @@ public class View {
                 else {
                     game[2][0] = 'O';
                 }
+                updateBoard();
             }
         });
         b8.addActionListener(new ActionListener() {
@@ -196,6 +186,7 @@ public class View {
                 else {
                     game[2][1] = 'O';
                 }
+                updateBoard();
             }
         });
         b9.addActionListener(new ActionListener() {
@@ -208,14 +199,54 @@ public class View {
                 else {
                     game[2][2] = 'O';
                 }
+                updateBoard();
             }
-        });*/
+        });
+        again.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for(int i=0; i<9; i++){
+                    blist[i].setText("");
+                    blist[i].setEnabled(true);
+                    count=1;
+                }
+            }
+        });
+        quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().removeAll();
+                JPanel container = new JPanel(new GridLayout(2,1));
+                JTextField ip = new JTextField();
+                JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
+                JButton send = new JButton("SEND REQUEST");
+                container.add(prompt);
+                container.add(ip);
+                frame.add(send, BorderLayout.EAST);
+                frame.add(container, BorderLayout.CENTER);
+                frame.repaint();
+                frame.validate();
 
+                send.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        String pip = ip.getText();
+                        System.out.println(pip);
+                    }
+                });
 
-
+            }
+        });
+    }
+    public void change(int b){
+        blist[b].setEnabled(false);
+        if(count%2 == 1){
+            blist[b].setText("X");
+        }
+        else{blist[b].setText("O");}
     }
 
     public static void main(String[] args) {
-        new View().mmenu();
+        new View().go();
     }
 }
