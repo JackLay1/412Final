@@ -36,12 +36,7 @@ public class View {
             count++;
         }
     }
-    public void updateBoard(){
-        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
-        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
-        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
-    }
-    public void go(){
+    public void finalgo(){
         JFrame frame = new JFrame("Tx3");
         frame.setSize(600,600);
         container21.add(prompt);
@@ -113,7 +108,7 @@ public class View {
                         else {
                             game[0][0] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b2.addActionListener(new ActionListener() {
@@ -126,7 +121,7 @@ public class View {
                         else {
                             game[0][1] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b3.addActionListener(new ActionListener() {
@@ -139,7 +134,7 @@ public class View {
                         else {
                             game[0][2] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b4.addActionListener(new ActionListener() {
@@ -152,7 +147,7 @@ public class View {
                         else {
                             game[1][0] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b5.addActionListener(new ActionListener() {
@@ -165,7 +160,7 @@ public class View {
                         else {
                             game[1][1] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b6.addActionListener(new ActionListener() {
@@ -178,7 +173,7 @@ public class View {
                         else {
                             game[1][2] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b7.addActionListener(new ActionListener() {
@@ -191,7 +186,7 @@ public class View {
                         else {
                             game[2][0] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b8.addActionListener(new ActionListener() {
@@ -204,7 +199,7 @@ public class View {
                         else {
                             game[2][1] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 b9.addActionListener(new ActionListener() {
@@ -217,7 +212,7 @@ public class View {
                         else {
                             game[2][2] = 'O';
                         }
-                        updateBoard();
+                        DISPLAYBOARD();
                     }
                 });
                 frame.repaint();
@@ -252,6 +247,11 @@ public class View {
             }
         });
     }
+    public void DISPLAYBOARD(){
+        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
+        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
+        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
+    }
     public void change(int b){
         blist[b].setEnabled(false);
         if(count%2 == 1){
@@ -259,8 +259,14 @@ public class View {
         }
         else{blist[b].setText("O");}
     }
+    public void ItsYourMove(){
+        for(int i=0;i<9;i++){blist[i].setEnabled(true);}
+    }
+    public void WaitForOtherPlayer(){for(int i=0;i<9;i++){blist[i].setEnabled(false);}}
+    public void displayGameResults(){
 
+    }
     public static void main(String[] args) {
-        new View().go();
+        new View().DISPLAYBOARD();
     }
 }
