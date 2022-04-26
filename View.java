@@ -266,7 +266,4 @@ public class View {
     public void displayGameResults(){
 
     }
-    public static void main(String[] args) {
-        new View().DISPLAYBOARD();
-    }
 }
