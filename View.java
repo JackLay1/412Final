@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class View {
     JTextField ip = new JTextField();
@@ -10,6 +9,8 @@ public class View {
     JButton send = new JButton("SEND REQUEST");
     JButton quit = new JButton("QUIT");
     JButton again = new JButton("PLAY AGAIN");
+    JButton URTURN = new JButton("YOUR TURN MDOE");
+    JButton NOTU = new JButton("NOT YOUR TURN");
     JPanel container21 = new JPanel(new GridLayout(2,1));
 
     JButton[][] buttons = new JButton[3][3];
@@ -95,7 +96,10 @@ public class View {
                 frame.add(container, BorderLayout.CENTER);
                 buttonss.add(again);
                 buttonss.add(quit);
-                frame.add(buttonss, BorderLayout.EAST);
+                buttonss.add(URTURN);
+                buttonss.add(NOTU);
+                frame.add(buttonss, BorderLayout.SOUTH);
+                buttonss.setVisible(true);
 
                 b1.addActionListener(new ActionListener() {
                     @Override
@@ -108,6 +112,7 @@ public class View {
                         else {
                             game[0][0] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -121,6 +126,7 @@ public class View {
                         else {
                             game[0][1] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -134,6 +140,7 @@ public class View {
                         else {
                             game[0][2] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -147,6 +154,7 @@ public class View {
                         else {
                             game[1][0] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -160,6 +168,7 @@ public class View {
                         else {
                             game[1][1] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -173,6 +182,7 @@ public class View {
                         else {
                             game[1][2] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -186,6 +196,7 @@ public class View {
                         else {
                             game[2][0] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -199,6 +210,7 @@ public class View {
                         else {
                             game[2][1] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -212,6 +224,7 @@ public class View {
                         else {
                             game[2][2] = 'O';
                         }
+                        WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -246,6 +259,20 @@ public class View {
                 frame.validate();
             }
         });
+        URTURN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ItsYourMove();
+            }
+        });
+        NOTU.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WaitForOtherPlayer();
+            }
+        });
+
+
     }
     public void DISPLAYBOARD(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
@@ -260,10 +287,25 @@ public class View {
         else{blist[b].setText("O");}
     }
     public void ItsYourMove(){
-        for(int i=0;i<9;i++){blist[i].setEnabled(true);}
+
+        for(int i=0;i<9;i++) {
+            if (blist[i].getText() == "") {
+                blist[i].setEnabled(true);
+            }
+        }
     }
-    public void WaitForOtherPlayer(){for(int i=0;i<9;i++){blist[i].setEnabled(false);}}
+    public void WaitForOtherPlayer(){
+        for(int i=0;i<9;i++){
+        blist[i].setEnabled(false);}
+    }
     public void displayGameResults(){
 
     }
+<<<<<<< Updated upstream
+=======
+
+    public static void main(String[] args) {
+        new View().finalgo();
+    }
+>>>>>>> Stashed changes
 }
