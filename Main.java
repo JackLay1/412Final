@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
+    JButton[][] buttons = new JButton[3][3];
     char game[][] = new char[3][3];
     int count = 0;
     JButton blist[] = new JButton[9];
@@ -56,22 +57,22 @@ public class Main {
         }
     }
     public void clicked(JButton b){
-        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
-        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
-        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
         if (count % 2 == 0) {
             b.setText("x");
-            b.setFont(new Font("Arial", Font.BOLD, 70));
+            b.setFont(new Font("WINGDINGS", Font.BOLD, 70));
             b.setEnabled(false);
             count++;
         }
         else {
             b.setText("O");
-            b.setFont(new Font("SANS SERIF", Font.BOLD, 69));
+            b.setFont(new Font("COMIC SANS", Font.BOLD, 69));
             b.setEnabled(false);
             count++;
         }
         check();
+        System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
+        System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
+        System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
     }
     public void halt(){
         System.out.println("Halting");
@@ -86,22 +87,31 @@ public class Main {
         container.setLayout(new GridLayout(3,3));
         JButton b1 = new JButton();
         blist[0] = b1;
+        buttons[0][0] = b1;
         JButton b2 = new JButton();
         blist[1] = b2;
+        buttons[0][1] = b2;
         JButton b3 = new JButton();
         blist[2] = b3;
+        buttons[0][2] = b3;
         JButton b4 = new JButton();
         blist[3] = b4;
+        buttons[1][0] = b4;
         JButton b5 = new JButton();
         blist[4] = b5;
+        buttons[1][1] = b5;
         JButton b6 = new JButton();
         blist[5] = b6;
+        buttons[1][2] = b6;
         JButton b7 = new JButton();
         blist[6] = b7;
+        buttons[2][0] = b7;
         JButton b8 = new JButton();
         blist[7] = b8;
+        buttons[2][1] = b8;
         JButton b9 = new JButton();
         blist[8] = b9;
+        buttons[2][2] = b9;
         container.add(b1);
         container.add(b2);
         container.add(b3);
@@ -120,7 +130,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 container.setEnabled(false);
-                if (count % 2 != 0) {
+                if (count % 2 == 0) {
                     game[0][0] = 'x';
                 }
                 else {
@@ -132,7 +142,7 @@ public class Main {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (count % 2 != 0) {
+                if (count % 2 == 0) {
                     game[0][1] = 'x';
                 }
                 else {
