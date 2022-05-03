@@ -5,13 +5,15 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Model {
 
 	final int PORT = 50348;
-
+	
+	//A enum just for niceness
 	private enum Piece {
 		Nought,
 		Cross,
@@ -47,17 +49,29 @@ public class Model {
 		}
 	}
 
+	//Used to report errors to the view
 	public interface ErrorCallback {
 		public void reportError(String error);
 	}
 
+
+	//Internal representation of the board
 	private Piece[][] board = new Piece[3][3];
+
+	//Which piece is this player
 	private Piece me = Piece.None;
+
+	//The socket used to talk to the other player
 	private Socket client_sock = new Socket();
+
+	//Used to accept connections
 	private ServerSocket server_sock;
+
+	//Used to report errors to the view
 	private ErrorCallback errorCallback;
 
 
+	//Add a error reporting callback
 	public void addErrorReporter(ErrorCallback c) {
 		errorCallback = c;
 	}
@@ -65,10 +79,17 @@ public class Model {
 	public Model() {
 
 		try {
+			//Create the socket. ServerSockets throw but sockets don't for some reason
 			server_sock = new ServerSocket();
+			
+			//Reuse the address. This doesn't seem to work very well though
 			server_sock.setReuseAddress(true);
 			client_sock.setReuseAddress(true);
+
+			//Bind the server address
 			server_sock.bind(new InetSocketAddress(PORT));
+
+		//Nothing to do but print the error and crash. There is no reporting callback yet
 		} catch (SocketException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -81,6 +102,7 @@ public class Model {
 
 	//UML
 
+	//Makes a move and sends it to the other player. Returns true if it's a valid move, false otherwise
 	public boolean move(int row, int column) {
 		if(row < 0 || row > 3 || column < 0 || column > 3) {
 			errorCallback.reportError("Incorrect row and/or column");
@@ -95,10 +117,13 @@ public class Model {
 		return true;
 	}
 
+
+	//Used to check if the game has ended.
 	public boolean hasEnded() {
 		return winner() != ' ' || draw();
 	}
 
+	//Who the winner is. 'X' if its crosses, 'O' if its noughts and ' ' if it's neither (draw)
 	public char winner() {
 		for(int i = 0; i < 3; i++) {
 			Piece rw = rowWin(i);
@@ -212,7 +237,8 @@ public class Model {
 
 	public boolean connect(String address) {
 		try {
-			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 120);
+			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 10);
+			
 			Scanner in = new Scanner(client_sock.getInputStream());
 			if (in.nextBoolean()) {
 				me = Piece.Cross;
@@ -220,6 +246,9 @@ public class Model {
 				me = Piece.Nought;
 			}
 			return true;
+		} catch (SocketTimeoutException e) {
+			e.printStackTrace();
+			return false;
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
 			return false;
@@ -248,8 +277,8 @@ public class Model {
 			me = Piece.Nought;
 		}
 		try {
-		PrintWriter out = new PrintWriter(client_sock.getOutputStream());
-		out.println(!amIFirst);
+			PrintWriter out = new PrintWriter(client_sock.getOutputStream());
+			out.println(!amIFirst);
 		} catch (IOException e) {
 			errorCallback.reportError(e.toString());
 			return false;
@@ -262,6 +291,7 @@ public class Model {
 		try {
 			PrintWriter w = new PrintWriter(client_sock.getOutputStream());
 			w.print(10);
+			client_sock.close();
 		} catch(IOException e) {
 			System.err.println("Failed to quit");
 			System.exit(1);

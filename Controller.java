@@ -10,14 +10,12 @@ public class Controller {
 		view = new View();
 		view.start();
 		
-		/*
 		model.addErrorReporter(new Model.ErrorCallback() {
 			@Override
 			public void reportError(String error) {
-				view.reportError(error);
+				view.showError(error);
 			}
 		});
-		*/
 
 		view.addConnectButtonListener(new ActionListener() {
 			@Override
@@ -25,6 +23,13 @@ public class Controller {
 				String t = view.getIP();
 				view.goToGame();
 				client(t);
+			}
+		});
+
+		view.addQuitButtonListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.quit();
 			}
 		});
 
@@ -70,7 +75,9 @@ public class Controller {
 				break;
 			}
 		}
+		model.quit();
 		char winner = model.winner();
-		//view.displayWinner(winner);
+
+		view.displayGameResults(winner);
 	}
 }
