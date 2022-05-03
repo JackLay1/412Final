@@ -79,13 +79,6 @@ public class Controller {
 		view = new View();
 		
 		view.start();
-		model.addErrorReporter(new Model.ErrorCallback() {
-			@Override
-			public void reportError(String error) {
-				System.err.println(error);
-				view.showError(error);
-			}
-		});
 
 		view.addQuitButtonListener(new ActionListener() {
 			@Override
@@ -116,6 +109,13 @@ public class Controller {
 	}
 
 	private void run() {
+		model.addErrorReporter(new Model.ErrorCallback() {
+			@Override
+			public void reportError(String error) {
+				System.err.println(error);
+				view.showError(error);
+			}
+		});
 		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
