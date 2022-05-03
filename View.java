@@ -61,6 +61,7 @@ public class View {
             } catch (UnknownHostException e) {
                 e.printStackTrace();
             }
+            frame.setSize(600,600);
             frame.add(wait, BorderLayout.CENTER);
             frame.add(IP, BorderLayout.SOUTH);
             frame.setVisible(true);
