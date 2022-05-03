@@ -246,7 +246,9 @@ public class Model {
 			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 500);
 			
 			Scanner in = new Scanner(client_sock.getInputStream());
-			if (in.nextBoolean()) {
+			String first = in.nextLine();
+			System.out.println(first);
+			if (first.equals("true")) {
 				me = Piece.Cross;
 			} else {
 				me = Piece.Nought;
@@ -290,6 +292,7 @@ public class Model {
 			errorCallback.reportError(e.toString());
 			return false;
 		}
+
 
 		return amIFirst;
 	}

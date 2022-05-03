@@ -63,9 +63,9 @@ public class Controller {
 			}
 		});
 	}
-	
+
 	private int getMove() {
-		while (_____private_move == 10) {
+		while(_____private_move == 10) {
 			try {
 				Thread.sleep(100);
 			} catch(InterruptedException e) {
@@ -74,7 +74,6 @@ public class Controller {
 		}
 		return _____private_move;
 	}
-
 
 
 
@@ -126,20 +125,22 @@ public class Controller {
 	}
 
 	private void run() {
+		System.out.println("HERE");
+
 		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
 			view.WaitForOtherPlayer();
 			model.recvMove();
-			//view.update(model.getBoard());
+			view.update(model.getBoard());
 		}
 		while(true) {
 			if(!model.hasEnded()) {
 				view.ItsYourMove();
-				//int move = view.getMove();
-				//int row = move / 3;
-				//int col = move % 3;
-				//model.move(row, col);
+				int move = getMove();
+				int row = move / 3;
+				int col = move % 3;
+				model.move(row, col);
 				view.update(model.getBoard());
 			} else {
 				break;
