@@ -33,7 +33,7 @@ public class View {
     int count = 1;
 
 
-    public void addListener(ActionListener al){
+    public void addConnectButtonListener(ActionListener al){
         send.addActionListener(al);
     };
     public void start(){

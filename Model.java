@@ -2,9 +2,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
+import java.net.SocketException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Model {
 
@@ -47,12 +49,12 @@ public class Model {
 
 	public interface ErrorCallback {
 		public void reportError(String error);
-		public void reportWarning(String warning);
 	}
 
 	private Piece[][] board = new Piece[3][3];
 	private Piece me = Piece.None;
-	private Socket sock = new Socket();
+	private Socket client_sock = new Socket();
+	private ServerSocket server_sock;
 	private ErrorCallback errorCallback;
 
 
@@ -61,6 +63,19 @@ public class Model {
 	}
 
 	public Model() {
+
+		try {
+			server_sock = new ServerSocket();
+			server_sock.setReuseAddress(true);
+			client_sock.setReuseAddress(true);
+			server_sock.bind(new InetSocketAddress(PORT));
+		} catch (SocketException e) {
+			e.printStackTrace();
+			System.exit(1);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 
 
@@ -68,11 +83,11 @@ public class Model {
 
 	public boolean move(int row, int column) {
 		if(row < 0 || row > 3 || column < 0 || column > 3) {
-			errorCallback.reportWarning("Incorrect row and/or column");
+			errorCallback.reportError("Incorrect row and/or column");
 			return false;
 		}
 		if(!board[row][column].equals(Piece.None)) {
-			errorCallback.reportWarning("Piece overwrite attempted");
+			errorCallback.reportError("Piece overwrite attempted");
 			return false;
 		}
 		sendMove(row, column);
@@ -172,7 +187,7 @@ public class Model {
 
 	private void sendMove(int row, int col) {
 		try {
-			PrintWriter w = new PrintWriter(sock.getOutputStream());
+			PrintWriter w = new PrintWriter(client_sock.getOutputStream());
 			w.print(row * 3 + col);
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
@@ -181,7 +196,7 @@ public class Model {
 
 	public int recvMove() {
 		try {
-			Scanner r = new Scanner(sock.getInputStream());
+			Scanner r = new Scanner(client_sock.getInputStream());
 			int move = r.nextInt();
 			if(move == 10) {
 				quit();
@@ -197,15 +212,34 @@ public class Model {
 
 	public boolean connect(String address) {
 		try {
-			sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 120);
+			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 120);
+			Scanner in = new Scanner(client_sock.getInputStream());
+			if (in.nextBoolean()) {
+				me = Piece.Cross;
+			} else {
+				me = Piece.Nought;
+			}
 			return true;
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
 			return false;
 		}
 	}
+	public boolean accept() {
+		try {
+			client_sock = server_sock.accept();
+			return true;
+		} catch (IOException e) {
+			errorCallback.reportError(e.toString());
+			return false;
+		}
+	}
+
 
 	public boolean amIFirstPlayer() {
+		if(!me.equals(Piece.None)) {
+			return me.equals(Piece.Cross);
+		}
 		Random r = new Random();
 		Boolean amIFirst = r.nextBoolean();
 		if(amIFirst) {
@@ -213,12 +247,20 @@ public class Model {
 		} else {
 			me = Piece.Nought;
 		}
+		try {
+		PrintWriter out = new PrintWriter(client_sock.getOutputStream());
+		out.println(!amIFirst);
+		} catch (IOException e) {
+			errorCallback.reportError(e.toString());
+			return false;
+		}
+
 		return amIFirst;
 	}
 
 	public void quit() {
 		try {
-			PrintWriter w = new PrintWriter(sock.getOutputStream());
+			PrintWriter w = new PrintWriter(client_sock.getOutputStream());
 			w.print(10);
 		} catch(IOException e) {
 			System.err.println("Failed to quit");
