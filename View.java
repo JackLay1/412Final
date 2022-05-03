@@ -1,8 +1,9 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class View {
     JFrame frame = new JFrame();
@@ -35,7 +36,7 @@ public class View {
         send.addActionListener(al);
     };
     public void addQuitButtonListener(ActionListener al){quit.addActionListener(al);}
-    public void start(){
+    /*public void start(){
         frame.setSize(600,600);
         container21.add(prompt);
         container21.add(ip);
@@ -46,18 +47,21 @@ public class View {
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
-    };
+    };*/
     public String getIP(){
         return ip.getText();
     };
     
-        public void waiting() throws UnknownHostException {
+        public void waiting(){
         frame.getContentPane().removeAll();
         JLabel wait = new JLabel("WAITING");
         JLabel IP = new JLabel();
-        IP.setText(InetAddress.getLocalHost().toString());
-        frame.add(wait, BorderLayout.CENTER);
+            try {
+                IP.setText(InetAddress.getLocalHost().toString());
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
+            frame.add(wait, BorderLayout.CENTER);
         frame.add(IP, BorderLayout.SOUTH);
     }
     
@@ -140,9 +144,9 @@ public class View {
     public void showError(String s){
         JLabel error = new JLabel(s);
         frame.getContentPane().removeAll();
-        frame.revalidate();
         frame.add(error, BorderLayout.CENTER);
         frame.repaint();
+        frame.validate();
 
     }
 
