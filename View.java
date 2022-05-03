@@ -301,11 +301,8 @@ public class View {
     public void displayGameResults(){
 
     }
-<<<<<<< Updated upstream
-=======
 
     public static void main(String[] args) {
         new View().finalgo();
     }
->>>>>>> Stashed changes
 }
