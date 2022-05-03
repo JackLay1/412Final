@@ -42,7 +42,11 @@ public class Controller {
 	}
 
 	private void client(String ip) {
-		model.connect(ip);
+
+		if(!model.connect(ip)) {
+			view.showError("Couldn't Connect");
+			return;
+		};
 		run();
 	}
 

@@ -78,6 +78,12 @@ public class Model {
 
 	public Model() {
 
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				board[row][col] = Piece.None;
+			}
+		}
+
 		try {
 			//Create the socket. ServerSockets throw but sockets don't for some reason
 			server_sock = new ServerSocket();
@@ -104,7 +110,7 @@ public class Model {
 
 	//Makes a move and sends it to the other player. Returns true if it's a valid move, false otherwise
 	public boolean move(int row, int column) {
-		if(row < 0 || row > 3 || column < 0 || column > 3) {
+		if(row < 0 || row > 2 || column < 0 || column > 2) {
 			errorCallback.reportError("Incorrect row and/or column");
 			return false;
 		}
@@ -237,7 +243,7 @@ public class Model {
 
 	public boolean connect(String address) {
 		try {
-			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 10);
+			client_sock.connect(new InetSocketAddress(InetAddress.getByName(address), PORT), 500);
 			
 			Scanner in = new Scanner(client_sock.getInputStream());
 			if (in.nextBoolean()) {
