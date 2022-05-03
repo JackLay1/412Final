@@ -76,32 +76,39 @@ public class Model {
 		errorCallback = c;
 	}
 
-	public Model() {
-
+	public Model(boolean server) {
 		for(int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
 				board[row][col] = Piece.None;
 			}
 		}
 
-		try {
-			//Create the socket. ServerSockets throw but sockets don't for some reason
-			server_sock = new ServerSocket();
-			
-			//Reuse the address. This doesn't seem to work very well though
-			server_sock.setReuseAddress(true);
-			client_sock.setReuseAddress(true);
+		if(server) {
+			try {
+				//Create the socket. ServerSockets throw but sockets don't for some reason
+				server_sock = new ServerSocket();
 
-			//Bind the server address
-			server_sock.bind(new InetSocketAddress(PORT));
+				//Reuse the address. This doesn't seem to work very well though
+				server_sock.setReuseAddress(true);
 
-		//Nothing to do but print the error and crash. There is no reporting callback yet
-		} catch (SocketException e) {
-			e.printStackTrace();
-			System.exit(1);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
+				//Bind the server address
+				server_sock.bind(new InetSocketAddress(PORT));
+
+				//Nothing to do but print the error and crash. There is no reporting callback yet
+			} catch (SocketException e) {
+				e.printStackTrace();
+				System.exit(1);
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
+		} else {
+			try {
+				client_sock.setReuseAddress(true);
+			} catch (SocketException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
 		}
 	}
 

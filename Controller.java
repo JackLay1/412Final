@@ -75,10 +75,7 @@ public class Controller {
 		return _____private_move;
 	}
 
-
-
 	public Controller() {
-		model = new Model();
 		view = new View();
 		
 		view.start();
@@ -90,33 +87,27 @@ public class Controller {
 			}
 		});
 
-		view.addConnectButtonListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String t = view.getIP();
-				client(t);
-			}
-		});
-
 		view.addQuitButtonListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				model.quit();
 			}
 		});
-
-
-		if(!model.accept()) {
-			System.exit(1);
-		}
-
-		run();
-
-
 	}
 
-	private void client(String ip) {
 
+	public void server() {
+		model = new Model(true);
+		view.waitScreen();
+		if(!model.accept()) {
+			view.showError("Couldn't accept connection");
+			return;
+		}
+		run();
+	}
+
+	public void client(String ip) {
+		model = new Model(false);
 		if(!model.connect(ip)) {
 			view.showError("Couldn't Connect");
 			return;
@@ -125,8 +116,6 @@ public class Controller {
 	}
 
 	private void run() {
-		System.out.println("HERE");
-
 		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
