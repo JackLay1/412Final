@@ -78,8 +78,6 @@ public class Controller {
 	public Controller() {
 		view = new View();
 		
-		view.start();
-
 		view.addQuitButtonListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
