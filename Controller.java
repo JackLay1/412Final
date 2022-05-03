@@ -98,7 +98,7 @@ public class Controller {
 
 	public void server() {
 		model = new Model(true);
-		view.waitScreen();
+		view.waiting();
 		if(!model.accept()) {
 			view.showError("Couldn't accept connection");
 			return;
