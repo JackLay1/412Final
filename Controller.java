@@ -89,8 +89,19 @@ public class Controller {
 	}
 
 
+	private void setupErrorCallback() {
+		model.addErrorReporter(new Model.ErrorCallback() {
+			@Override
+			public void reportError(String error) {
+				System.err.println(error);
+				view.showError(error);
+			}
+		});
+	}
+	
 	public void server() {
 		model = new Model(true);
+		setupErrorCallback();
 		view.waiting();
 		if(!model.accept()) {
 			view.showError("Couldn't accept connection");
@@ -101,6 +112,7 @@ public class Controller {
 
 	public void client(String ip) {
 		model = new Model(false);
+		setupErrorCallback();
 		if(!model.connect(ip)) {
 			view.showError("Couldn't Connect");
 			return;
@@ -109,13 +121,6 @@ public class Controller {
 	}
 
 	private void run() {
-		model.addErrorReporter(new Model.ErrorCallback() {
-			@Override
-			public void reportError(String error) {
-				System.err.println(error);
-				view.showError(error);
-			}
-		});
 		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
