@@ -281,7 +281,7 @@ public class View {
         if(w == 'X'){
             win.setText("X wins");
         }
-        else if(w == "O"){
+        else if(w == 'O'){
             win.setText("O WINS");
         }
         else{win.setText("TIE GANME");}
