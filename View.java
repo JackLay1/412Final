@@ -48,6 +48,10 @@ public class View {
         container.setLayout(new GridLayout(3, 3));
         JPanel buttonss = new JPanel();
 
+        for(JButton i : blist){
+            i.setText("");
+
+        }
 
         container.add(blist[1]);
         container.add(blist[2]);
