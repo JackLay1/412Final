@@ -47,7 +47,6 @@ public class View {
 
         frame.setVisible(true);
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         send.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,7 +111,7 @@ public class View {
                         else {
                             game[0][0] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -126,7 +125,7 @@ public class View {
                         else {
                             game[0][1] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -140,7 +139,7 @@ public class View {
                         else {
                             game[0][2] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -154,7 +153,7 @@ public class View {
                         else {
                             game[1][0] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -168,7 +167,7 @@ public class View {
                         else {
                             game[1][1] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -182,7 +181,7 @@ public class View {
                         else {
                             game[1][2] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -196,7 +195,7 @@ public class View {
                         else {
                             game[2][0] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -210,7 +209,7 @@ public class View {
                         else {
                             game[2][1] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -224,7 +223,7 @@ public class View {
                         else {
                             game[2][2] = 'O';
                         }
-                        WaitForOtherPlayer();
+                        //WaitForOtherPlayer();
                         DISPLAYBOARD();
                     }
                 });
@@ -260,7 +259,6 @@ public class View {
             }
         });
         URTURN.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 ItsYourMove();
             }
@@ -271,8 +269,7 @@ public class View {
                 WaitForOtherPlayer();
             }
         });
-
-
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
     public void DISPLAYBOARD(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
@@ -301,11 +298,8 @@ public class View {
     public void displayGameResults(){
 
     }
-<<<<<<< Updated upstream
-=======
 
     public static void main(String[] args) {
         new View().finalgo();
     }
->>>>>>> Stashed changes
 }
