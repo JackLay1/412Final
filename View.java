@@ -21,6 +21,15 @@ public class View {
     char game[][] = new char[3][3];
     int count = 1;
 
+    public void addButtonListener1(ActionListener al){blist[0].addActionListener(al);}
+    public void addButtonListener2(ActionListener al){blist[1].addActionListener(al);}
+    public void addButtonListener3(ActionListener al){blist[2].addActionListener(al);}
+    public void addButtonListener4(ActionListener al){blist[3].addActionListener(al);}
+    public void addButtonListener5(ActionListener al){blist[4].addActionListener(al);}
+    public void addButtonListener6(ActionListener al){blist[5].addActionListener(al);}
+    public void addButtonListener7(ActionListener al){blist[6].addActionListener(al);}
+    public void addButtonListener8(ActionListener al){blist[7].addActionListener(al);}
+    public void addButtonListener9(ActionListener al){blist[8].addActionListener(al);}
 
     public void addConnectButtonListener(ActionListener al){
         send.addActionListener(al);
@@ -68,7 +77,7 @@ public class View {
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
 
-        blist[0].addActionListener(new ActionListener() {
+        /*blist[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[1]);
@@ -186,6 +195,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
+        */
         frame.repaint();
         frame.validate();
 
