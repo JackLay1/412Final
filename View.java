@@ -51,6 +51,16 @@ public class View {
     public String getIP(){
         return ip.getText();
     };
+    
+        public void waiting() throws UnknownHostException {
+        frame.getContentPane().removeAll();
+        JLabel wait = new JLabel("WAITING");
+        JLabel IP = new JLabel();
+        IP.setText(InetAddress.getLocalHost().toString());
+        frame.add(wait, BorderLayout.CENTER);
+        frame.add(IP, BorderLayout.SOUTH);
+    }
+    
     public void goToGame() {
         for(int i=0; i<9; i++){
             blist[i] = new JButton("") ;
@@ -76,126 +86,7 @@ public class View {
         buttonss.add(quit);
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
-
-        /*blist[0].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[1]);
-                container.setEnabled(false);
-                if (count % 2 == 0) {
-                    game[0][0] = 'x';
-                } else {
-                    game[0][0] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[1].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[2]);
-                if (count % 2 == 0) {
-                    game[0][1] = 'x';
-                } else {
-                    game[0][1] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[2].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[3]);
-                if (count % 2 == 0) {
-                    game[0][2] = 'x';
-                } else {
-                    game[0][2] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[3].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[4]);
-                if (count % 2 == 0) {
-                    game[1][0] = 'x';
-                } else {
-                    game[1][0] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[4].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[5]);
-                if (count % 2 == 0) {
-                    game[1][1] = 'x';
-                } else {
-                    game[1][1] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[5].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[6]);
-                if (count % 2 == 0) {
-                    game[1][2] = 'x';
-                } else {
-                    game[1][2] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[6].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[7]);
-                if (count % 2 == 0) {
-                    game[2][0] = 'x';
-                } else {
-                    game[2][0] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[7].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[8]);
-                if (count % 2 == 0) {
-                    game[2][1] = 'x';
-                } else {
-                    game[2][1] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        blist[8].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(blist[8]);
-                if (count % 2 == 0) {
-                    game[2][2] = 'x';
-                } else {
-                    game[2][2] = 'O';
-                }
-                WaitForOtherPlayer();
-                DISPLAYBOARD();
-            }
-        });
-        */
+        
         frame.repaint();
         frame.validate();
 
