@@ -1,9 +1,13 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View {
+    JFrame frame = new JFrame();
+
+    JButton blist[] = new JButton[9];
     JTextField ip = new JTextField();
     JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
     JButton send = new JButton("SEND REQUEST");
@@ -11,19 +15,28 @@ public class View {
     JButton again = new JButton("PLAY AGAIN");
     JButton URTURN = new JButton("YOUR TURN MDOE");
     JButton NOTU = new JButton("NOT YOUR TURN");
+
+    JButton b1 = new JButton();
+    JButton b2 = new JButton();
+    JButton b3 = new JButton();
+    JButton b4 = new JButton();
+    JButton b5 = new JButton();
+    JButton b6 = new JButton();
+    JButton b7 = new JButton();
+    JButton b8 = new JButton();
+    JButton b9 = new JButton();
+
     JPanel container21 = new JPanel(new GridLayout(2,1));
 
     JButton[][] buttons = new JButton[3][3];
     char game[][] = new char[3][3];
     int count = 1;
-    JButton blist[] = new JButton[9];
 
 
     public void addListener(ActionListener al){
         send.addActionListener(al);
     };
     public void start(){
-        JFrame frame = new JFrame("Tx3");
         frame.setSize(600,600);
         container21.add(prompt);
         container21.add(ip);
@@ -40,29 +53,11 @@ public class View {
         return ip.getText();
     };
     public void goToGame() {
-        JFrame frame = new JFrame();
         frame.getContentPane().removeAll();
         JPanel container = new JPanel();
         container.setLayout(new GridLayout(3, 3));
         JPanel buttonss = new JPanel();
-        JButton b1 = new JButton();
-        blist[0] = b1;
-        JButton b2 = new JButton();
-        blist[1] = b2;
-        JButton b3 = new JButton();
-        blist[2] = b3;
-        JButton b4 = new JButton();
-        blist[3] = b4;
-        JButton b5 = new JButton();
-        blist[4] = b5;
-        JButton b6 = new JButton();
-        blist[5] = b6;
-        JButton b7 = new JButton();
-        blist[6] = b7;
-        JButton b8 = new JButton();
-        blist[7] = b8;
-        JButton b9 = new JButton();
-        blist[8] = b9;
+
 
         container.add(b1);
         container.add(b2);
@@ -242,6 +237,19 @@ public class View {
             }
         });
     }
+    public void update(char[][] f){
+        b1.setText(Character.toString(f[0][0]));
+        b2.setText(Character.toString(f[0][1]));
+        b3.setText(Character.toString(f[0][2]));
+        b4.setText(Character.toString(f[1][0]));
+        b5.setText(Character.toString(f[1][1]));
+        b6.setText(Character.toString(f[1][2]));
+        b7.setText(Character.toString(f[2][0]));
+        b8.setText(Character.toString(f[2][1]));
+        b9.setText(Character.toString(f[2][2]));
+    }
+
+
 
     public void DISPLAYBOARD(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
@@ -267,8 +275,18 @@ public class View {
         for(int i=0;i<9;i++){
             blist[i].setEnabled(false);}
     }
-    public void displayGameResults(){
+    public void displayGameResults(char w){
+        frame.getContentPane().removeAll();
+        JLabel win = new JLabel();
+        if(w == 'X'){
+            win.setText("X wins");
+        }
+        else if(w == "O"){
+            win.setText("O WINS");
+        }
+        else{win.setText("TIE GANME");}
 
+        frame.add(win, BorderLayout.CENTER)
     }
     public void halt(){
         for(int i=0; i<9; i++){
@@ -288,5 +306,10 @@ public class View {
             b.setEnabled(false);
             count++;
         }
+    }
+
+    public static void main(String[] args) {
+        new View().start();
+        new View().goToGame();
     }
 }
