@@ -84,6 +84,7 @@ public class Controller {
 				model.quit();
 			}
 		});
+
 	}
 
 
@@ -119,6 +120,12 @@ public class Controller {
 	}
 
 	private void run() {
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+			public void run() {
+				model.quit();
+			}
+		}));
+
 		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
