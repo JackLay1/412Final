@@ -263,6 +263,7 @@ public class Model {
 	public boolean accept() {
 		try {
 			client_sock = server_sock.accept();
+			amIFirstPlayer();
 			return true;
 		} catch (IOException e) {
 			errorCallback.reportError(e.toString());
