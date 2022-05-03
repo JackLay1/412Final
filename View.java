@@ -54,6 +54,7 @@ public class View {
     
         public void waiting(){
         frame.getContentPane().removeAll();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JLabel wait = new JLabel("WAITING");
         JLabel IP = new JLabel();
             try {
