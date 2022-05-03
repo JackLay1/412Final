@@ -8,7 +8,6 @@ public class Controller {
 	public Controller() {
 		model = new Model();
 		view = new View();
-		view.start();
 		
 		model.addErrorReporter(new Model.ErrorCallback() {
 			@Override
@@ -32,6 +31,8 @@ public class Controller {
 				model.quit();
 			}
 		});
+
+		view.start();
 
 		if(!model.accept()) {
 			System.exit(1);
