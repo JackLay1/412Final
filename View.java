@@ -27,6 +27,9 @@ public class View {
     };
     public void addQuitButtonListener(ActionListener al){quit.addActionListener(al);}
     public void start(){
+        for(JButton q : blist){
+            q = new JButton("");
+                    }
         frame.setSize(600,600);
         container21.add(prompt);
         container21.add(ip);
@@ -49,7 +52,7 @@ public class View {
         JPanel buttonss = new JPanel();
 
         for(JButton i : blist){
-            i.setText("");
+            i.setText(" ");
 
         }
 
@@ -298,7 +301,6 @@ public class View {
     }
 
     public static void main(String[] args) {
-        new View().start();
-        new View().goToGame();
+
     }
 }
