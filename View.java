@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View {
+    JFrame frame = new JFrame("Tx3");
     JTextField ip = new JTextField();
     JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
     JButton send = new JButton("SEND REQUEST");
@@ -12,6 +13,7 @@ public class View {
     JButton URTURN = new JButton("YOUR TURN MDOE");
     JButton NOTU = new JButton("NOT YOUR TURN");
     JPanel container21 = new JPanel(new GridLayout(2,1));
+    JLabel error = new JLabel();
 
     JButton[][] buttons = new JButton[3][3];
     char game[][] = new char[3][3];
@@ -38,7 +40,6 @@ public class View {
         }
     }
     public void finalgo(){
-        JFrame frame = new JFrame("Tx3");
         frame.setSize(600,600);
         container21.add(prompt);
         container21.add(ip);
@@ -295,11 +296,20 @@ public class View {
         for(int i=0;i<9;i++){
         blist[i].setEnabled(false);}
     }
-    public void displayGameResults(){
+    public void displayGameResults(char w){
+
+    }
+    public void displayError(String s){
+        frame.setSize(600,600);
+        frame.setVisible(true);
+        frame.getContentPane().removeAll();
+        frame.add(error, BorderLayout.CENTER);
+        error.setText(s);
+
 
     }
 
     public static void main(String[] args) {
-        new View().finalgo();
+        new View().displayError("TEST TEST");
     }
 }
