@@ -67,7 +67,7 @@ public class Controller {
 				//int row = move / 3;
 				//int col = move % 3;
 				//model.move(row, col);
-				//view.update(model.getBoard());
+				view.update(model.getBoard());
 			} else {
 				break;
 			}
@@ -78,7 +78,7 @@ public class Controller {
 				int row = move / 3;
 				int col = move % 3;
 				model.move(row, col);
-				//view.update(model.getBoard());
+				view.update(model.getBoard());
 			} else {
 				break;
 			}
