@@ -18,6 +18,10 @@ public class View {
     int count = 1;
     JButton blist[] = new JButton[9];
 
+
+    public void addListener(ActionListener al){
+        send.addActionListener(al);
+    };
     public void start(){
         JFrame frame = new JFrame("Tx3");
         frame.setSize(600,600);
@@ -43,31 +47,23 @@ public class View {
         JPanel buttonss = new JPanel();
         JButton b1 = new JButton();
         blist[0] = b1;
-        buttons[0][0] = b1;
         JButton b2 = new JButton();
         blist[1] = b2;
-        buttons[0][1] = b2;
         JButton b3 = new JButton();
         blist[2] = b3;
-        buttons[0][2] = b3;
         JButton b4 = new JButton();
         blist[3] = b4;
-        buttons[1][0] = b4;
         JButton b5 = new JButton();
         blist[4] = b5;
-        buttons[1][1] = b5;
         JButton b6 = new JButton();
         blist[5] = b6;
-        buttons[1][2] = b6;
         JButton b7 = new JButton();
         blist[6] = b7;
-        buttons[2][0] = b7;
         JButton b8 = new JButton();
         blist[7] = b8;
-        buttons[2][1] = b8;
         JButton b9 = new JButton();
         blist[8] = b9;
-        buttons[2][2] = b9;
+
         container.add(b1);
         container.add(b2);
         container.add(b3);
@@ -77,6 +73,7 @@ public class View {
         container.add(b7);
         container.add(b8);
         container.add(b9);
+
         frame.add(container, BorderLayout.CENTER);
         buttonss.add(again);
         buttonss.add(quit);
@@ -211,7 +208,6 @@ public class View {
                     game[2][1] = 'O';
                 }
                 WaitForOtherPlayer();
-                DISPLAYBOARD();
             }
         });
         frame.repaint();
@@ -246,6 +242,7 @@ public class View {
             }
         });
     }
+
     public void DISPLAYBOARD(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
         System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
