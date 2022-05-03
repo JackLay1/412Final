@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 
 public class View {
     JFrame frame = new JFrame();
-
-    JButton blist[] = new JButton[9];
+    JButton[] blist = new JButton[9];
     JTextField ip = new JTextField();
     JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
     JButton send = new JButton("SEND REQUEST");
@@ -15,16 +14,6 @@ public class View {
     JButton again = new JButton("PLAY AGAIN");
     JButton URTURN = new JButton("YOUR TURN MDOE");
     JButton NOTU = new JButton("NOT YOUR TURN");
-
-    JButton b1 = new JButton();
-    JButton b2 = new JButton();
-    JButton b3 = new JButton();
-    JButton b4 = new JButton();
-    JButton b5 = new JButton();
-    JButton b6 = new JButton();
-    JButton b7 = new JButton();
-    JButton b8 = new JButton();
-    JButton b9 = new JButton();
 
     JPanel container21 = new JPanel(new GridLayout(2,1));
 
@@ -36,6 +25,7 @@ public class View {
     public void addConnectButtonListener(ActionListener al){
         send.addActionListener(al);
     };
+    public void addQuitButtonListener(ActionListener al){quit.addActionListener(al);}
     public void start(){
         frame.setSize(600,600);
         container21.add(prompt);
@@ -59,15 +49,15 @@ public class View {
         JPanel buttonss = new JPanel();
 
 
-        container.add(b1);
-        container.add(b2);
-        container.add(b3);
-        container.add(b4);
-        container.add(b5);
-        container.add(b6);
-        container.add(b7);
-        container.add(b8);
-        container.add(b9);
+        container.add(blist[1]);
+        container.add(blist[2]);
+        container.add(blist[3]);
+        container.add(blist[4]);
+        container.add(blist[5]);
+        container.add(blist[6]);
+        container.add(blist[7]);
+        container.add(blist[8]);
+        container.add(blist[9]);
 
         frame.add(container, BorderLayout.CENTER);
         buttonss.add(again);
@@ -75,10 +65,10 @@ public class View {
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
 
-        b1.addActionListener(new ActionListener() {
+        blist[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b1);
+                clicked(blist[1]);
                 container.setEnabled(false);
                 if (count % 2 == 0) {
                     game[0][0] = 'x';
@@ -89,10 +79,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b2.addActionListener(new ActionListener() {
+        blist[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b2);
+                clicked(blist[2]);
                 if (count % 2 == 0) {
                     game[0][1] = 'x';
                 } else {
@@ -102,10 +92,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b3.addActionListener(new ActionListener() {
+        blist[3].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b3);
+                clicked(blist[3]);
                 if (count % 2 == 0) {
                     game[0][2] = 'x';
                 } else {
@@ -115,10 +105,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b4.addActionListener(new ActionListener() {
+        blist[4].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b4);
+                clicked(blist[4]);
                 if (count % 2 == 0) {
                     game[1][0] = 'x';
                 } else {
@@ -128,10 +118,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b5.addActionListener(new ActionListener() {
+        blist[5].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b5);
+                clicked(blist[5]);
                 if (count % 2 == 0) {
                     game[1][1] = 'x';
                 } else {
@@ -141,10 +131,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b6.addActionListener(new ActionListener() {
+        blist[6].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b6);
+                clicked(blist[6]);
                 if (count % 2 == 0) {
                     game[1][2] = 'x';
                 } else {
@@ -154,10 +144,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b7.addActionListener(new ActionListener() {
+        blist[7].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b7);
+                clicked(blist[7]);
                 if (count % 2 == 0) {
                     game[2][0] = 'x';
                 } else {
@@ -167,10 +157,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b8.addActionListener(new ActionListener() {
+        blist[8].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b8);
+                clicked(blist[8]);
                 if (count % 2 == 0) {
                     game[2][1] = 'x';
                 } else {
@@ -180,10 +170,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        b9.addActionListener(new ActionListener() {
+        blist[9].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(b9);
+                clicked(blist[9]);
                 if (count % 2 == 0) {
                     game[2][2] = 'x';
                 } else {
@@ -191,18 +181,6 @@ public class View {
                 }
                 WaitForOtherPlayer();
                 DISPLAYBOARD();
-            }
-        });
-        b9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                clicked(b8);
-                if (count % 2 == 0) {
-                    game[2][1] = 'x';
-                } else {
-                    game[2][1] = 'O';
-                }
-                WaitForOtherPlayer();
             }
         });
         frame.repaint();
@@ -238,17 +216,25 @@ public class View {
         });
     }
     public void update(char[][] f){
-        b1.setText(Character.toString(f[0][0]));
-        b2.setText(Character.toString(f[0][1]));
-        b3.setText(Character.toString(f[0][2]));
-        b4.setText(Character.toString(f[1][0]));
-        b5.setText(Character.toString(f[1][1]));
-        b6.setText(Character.toString(f[1][2]));
-        b7.setText(Character.toString(f[2][0]));
-        b8.setText(Character.toString(f[2][1]));
-        b9.setText(Character.toString(f[2][2]));
+        blist[1].setText(Character.toString(f[0][0]));
+        blist[2].setText(Character.toString(f[0][1]));
+        blist[3].setText(Character.toString(f[0][2]));
+        blist[4].setText(Character.toString(f[1][0]));
+        blist[5].setText(Character.toString(f[1][1]));
+        blist[6].setText(Character.toString(f[1][2]));
+        blist[7].setText(Character.toString(f[2][0]));
+        blist[8].setText(Character.toString(f[2][1]));
+        blist[9].setText(Character.toString(f[2][2]));
     }
 
+    public void showError(String s){
+        JLabel error = new JLabel(s);
+        frame.getContentPane().removeAll();
+        frame.revalidate();
+        frame.add(error, BorderLayout.CENTER);
+        frame.repaint();
+
+    }
 
 
     public void DISPLAYBOARD(){
