@@ -62,7 +62,8 @@ public class View {
                 e.printStackTrace();
             }
             frame.add(wait, BorderLayout.CENTER);
-        frame.add(IP, BorderLayout.SOUTH);
+            frame.add(IP, BorderLayout.SOUTH);
+            frame.setVisible(true);
     }
     
     public void goToGame() {
