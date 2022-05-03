@@ -49,11 +49,11 @@ public class Controller {
 			view.showError("Couldn't Connect");
 			return;
 		};
-		view.goToGame();
 		run();
 	}
 
 	private void run() {
+		view.goToGame();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
 			view.WaitForOtherPlayer();
