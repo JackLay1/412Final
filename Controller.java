@@ -9,9 +9,11 @@ public class Controller {
 		model = new Model();
 		view = new View();
 		
+		view.start();
 		model.addErrorReporter(new Model.ErrorCallback() {
 			@Override
 			public void reportError(String error) {
+				System.err.println(error);
 				view.showError(error);
 			}
 		});
@@ -20,7 +22,6 @@ public class Controller {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String t = view.getIP();
-				view.goToGame();
 				client(t);
 			}
 		});
@@ -32,11 +33,12 @@ public class Controller {
 			}
 		});
 
-		view.start();
 
 		if(!model.accept()) {
 			System.exit(1);
 		}
+
+		run();
 
 
 	}
@@ -47,6 +49,7 @@ public class Controller {
 			view.showError("Couldn't Connect");
 			return;
 		};
+		view.goToGame();
 		run();
 	}
 

@@ -253,7 +253,7 @@ public class Model {
 			}
 			return true;
 		} catch (SocketTimeoutException e) {
-			e.printStackTrace();
+			errorCallback.reportError(e.toString());
 			return false;
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
