@@ -229,6 +229,12 @@ public class View {
         blist[7].setText(Character.toString(f[2][0]));
         blist[8].setText(Character.toString(f[2][1]));
         blist[9].setText(Character.toString(f[2][2]));
+
+        for(JButton b : blist ){
+            if(!b.getText().equals("")){
+                b.setEnabled(false);
+            }
+        }
     }
 
     public void showError(String s){
@@ -245,13 +251,6 @@ public class View {
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
         System.out.println(game[1][0] + "|" + game[1][1] + "|" + game[1][2]);
         System.out.println(game[2][0] + "|" + game[2][1] + "|" + game[2][2]);
-    }
-    public void change(int b){
-        blist[b].setEnabled(false);
-        if(count%2 == 1){
-            blist[b].setText("X");
-        }
-        else{blist[b].setText("O");}
     }
     public void ItsYourMove(){
 
