@@ -27,9 +27,6 @@ public class View {
     };
     public void addQuitButtonListener(ActionListener al){quit.addActionListener(al);}
     public void start(){
-        for(JButton q : blist){
-            q = new JButton("");
-                    }
         frame.setSize(600,600);
         container21.add(prompt);
         container21.add(ip);
@@ -46,16 +43,16 @@ public class View {
         return ip.getText();
     };
     public void goToGame() {
+        for(int i=0; i<9; i++){
+            blist[i] = new JButton("") ;
+        }
+
         frame.getContentPane().removeAll();
         JPanel container = new JPanel();
         container.setLayout(new GridLayout(3, 3));
         JPanel buttonss = new JPanel();
 
-        for(JButton i : blist){
-            i.setText(" ");
-
-        }
-
+        container.add(blist[0]);
         container.add(blist[1]);
         container.add(blist[2]);
         container.add(blist[3]);
@@ -64,7 +61,6 @@ public class View {
         container.add(blist[6]);
         container.add(blist[7]);
         container.add(blist[8]);
-        container.add(blist[9]);
 
         frame.add(container, BorderLayout.CENTER);
         buttonss.add(again);
@@ -72,7 +68,7 @@ public class View {
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
 
-        blist[1].addActionListener(new ActionListener() {
+        blist[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[1]);
@@ -86,7 +82,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[2].addActionListener(new ActionListener() {
+        blist[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[2]);
@@ -99,7 +95,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[3].addActionListener(new ActionListener() {
+        blist[2].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[3]);
@@ -112,7 +108,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[4].addActionListener(new ActionListener() {
+        blist[3].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[4]);
@@ -125,7 +121,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[5].addActionListener(new ActionListener() {
+        blist[4].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[5]);
@@ -138,7 +134,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[6].addActionListener(new ActionListener() {
+        blist[5].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[6]);
@@ -151,7 +147,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[7].addActionListener(new ActionListener() {
+        blist[6].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[7]);
@@ -164,7 +160,7 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[8].addActionListener(new ActionListener() {
+        blist[7].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clicked(blist[8]);
@@ -177,10 +173,10 @@ public class View {
                 DISPLAYBOARD();
             }
         });
-        blist[9].addActionListener(new ActionListener() {
+        blist[8].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                clicked(blist[9]);
+                clicked(blist[8]);
                 if (count % 2 == 0) {
                     game[2][2] = 'x';
                 } else {
@@ -223,15 +219,15 @@ public class View {
         });
     }
     public void update(char[][] f){
-        blist[1].setText(Character.toString(f[0][0]));
-        blist[2].setText(Character.toString(f[0][1]));
-        blist[3].setText(Character.toString(f[0][2]));
-        blist[4].setText(Character.toString(f[1][0]));
-        blist[5].setText(Character.toString(f[1][1]));
-        blist[6].setText(Character.toString(f[1][2]));
-        blist[7].setText(Character.toString(f[2][0]));
-        blist[8].setText(Character.toString(f[2][1]));
-        blist[9].setText(Character.toString(f[2][2]));
+        blist[0].setText(Character.toString(f[0][0]));
+        blist[1].setText(Character.toString(f[0][1]));
+        blist[2].setText(Character.toString(f[0][2]));
+        blist[3].setText(Character.toString(f[1][0]));
+        blist[4].setText(Character.toString(f[1][1]));
+        blist[5].setText(Character.toString(f[1][2]));
+        blist[6].setText(Character.toString(f[2][0]));
+        blist[7].setText(Character.toString(f[2][1]));
+        blist[8].setText(Character.toString(f[2][2]));
 
         for(JButton b : blist ){
             if(!b.getText().equals("")){
