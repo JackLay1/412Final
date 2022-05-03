@@ -3,6 +3,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class View {
     JFrame frame = new JFrame();
@@ -52,12 +54,16 @@ public class View {
         return ip.getText();
     };
     
-        public void waiting() throws UnknownHostException {
+        public void waiting(){
         frame.getContentPane().removeAll();
         JLabel wait = new JLabel("WAITING");
         JLabel IP = new JLabel();
-        IP.setText(InetAddress.getLocalHost().toString());
-        frame.add(wait, BorderLayout.CENTER);
+            try {
+                IP.setText(InetAddress.getLocalHost().toString());
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
+            frame.add(wait, BorderLayout.CENTER);
         frame.add(IP, BorderLayout.SOUTH);
     }
     
