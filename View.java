@@ -35,11 +35,11 @@ public class View {
     public String getIP(){
         return ip.getText();
     };
-    public void goToGame(){
+    public void goToGame() {
         JFrame frame = new JFrame();
         frame.getContentPane().removeAll();
         JPanel container = new JPanel();
-        container.setLayout(new GridLayout(3,3));
+        container.setLayout(new GridLayout(3, 3));
         JPanel buttonss = new JPanel();
         JButton b1 = new JButton();
         blist[0] = b1;
@@ -90,8 +90,7 @@ public class View {
                 container.setEnabled(false);
                 if (count % 2 == 0) {
                     game[0][0] = 'x';
-                }
-                else {
+                } else {
                     game[0][0] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -104,8 +103,7 @@ public class View {
                 clicked(b2);
                 if (count % 2 == 0) {
                     game[0][1] = 'x';
-                }
-                else {
+                } else {
                     game[0][1] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -118,8 +116,7 @@ public class View {
                 clicked(b3);
                 if (count % 2 == 0) {
                     game[0][2] = 'x';
-                }
-                else {
+                } else {
                     game[0][2] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -132,8 +129,7 @@ public class View {
                 clicked(b4);
                 if (count % 2 == 0) {
                     game[1][0] = 'x';
-                }
-                else {
+                } else {
                     game[1][0] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -146,8 +142,7 @@ public class View {
                 clicked(b5);
                 if (count % 2 == 0) {
                     game[1][1] = 'x';
-                }
-                else {
+                } else {
                     game[1][1] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -160,8 +155,7 @@ public class View {
                 clicked(b6);
                 if (count % 2 == 0) {
                     game[1][2] = 'x';
-                }
-                else {
+                } else {
                     game[1][2] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -174,8 +168,7 @@ public class View {
                 clicked(b7);
                 if (count % 2 == 0) {
                     game[2][0] = 'x';
-                }
-                else {
+                } else {
                     game[2][0] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -188,8 +181,7 @@ public class View {
                 clicked(b8);
                 if (count % 2 == 0) {
                     game[2][1] = 'x';
-                }
-                else {
+                } else {
                     game[2][1] = 'O';
                 }
                 WaitForOtherPlayer();
@@ -202,9 +194,21 @@ public class View {
                 clicked(b9);
                 if (count % 2 == 0) {
                     game[2][2] = 'x';
-                }
-                else {
+                } else {
                     game[2][2] = 'O';
+                }
+                WaitForOtherPlayer();
+                DISPLAYBOARD();
+            }
+        });
+        b9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clicked(b8);
+                if (count % 2 == 0) {
+                    game[2][1] = 'x';
+                } else {
+                    game[2][1] = 'O';
                 }
                 WaitForOtherPlayer();
                 DISPLAYBOARD();
@@ -212,76 +216,35 @@ public class View {
         });
         frame.repaint();
         frame.validate();
-    }
-});
+
+
         again.addActionListener(new ActionListener() {
-@Override
-public void actionPerformed(ActionEvent e) {
-        for(int i=0; i<9; i++){
-        blist[i].setText("");
-        blist[i].setEnabled(true);
-        count=1;
-        }
-        for (int i=0; i<3; i++){
-        for(int j=0; j<3; j++){
-        game[i][j]='\u0000';
-        }
-        }
-        }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < 9; i++) {
+                    blist[i].setText("");
+                    blist[i].setEnabled(true);
+                    count = 1;
+                }
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        game[i][j] = '\u0000';
+                    }
+                }
+            }
         });
         quit.addActionListener(new ActionListener() {
-@Override
-public void actionPerformed(ActionEvent e) {
-        frame.getContentPane().removeAll();
-        container21.add(prompt);
-        container21.add(ip);
-        frame.add(send, BorderLayout.EAST);
-        frame.add(container21, BorderLayout.CENTER);
-        frame.repaint();
-        frame.validate();
-        }
-        });
-    };
-
-    public void halt(){
-        for(int i=0; i<9; i++){
-            blist[i].setEnabled(false);
-        }
-    }
-    public void clicked(JButton b){
-        if (count % 2 == 1) {
-            b.setText("x");
-            b.setFont(new Font("ARIAL", Font.BOLD, 70));
-            b.setEnabled(false);
-            count++;
-        }
-        else {
-            b.setText("O");
-            b.setFont(new Font("COMIC SANS", Font.BOLD, 69));
-            b.setEnabled(false);
-            count++;
-        }
-    }
-    public void finalgo(){
-
-
-
-
-
-        URTURN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ItsYourMove();
+                frame.getContentPane().removeAll();
+                container21.add(prompt);
+                container21.add(ip);
+                frame.add(send, BorderLayout.EAST);
+                frame.add(container21, BorderLayout.CENTER);
+                frame.repaint();
+                frame.validate();
             }
         });
-        NOTU.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                WaitForOtherPlayer();
-            }
-        });
-
-
     }
     public void DISPLAYBOARD(){
         System.out.println(game[0][0] + "|" + game[0][1] + "|" + game[0][2]);
@@ -305,13 +268,28 @@ public void actionPerformed(ActionEvent e) {
     }
     public void WaitForOtherPlayer(){
         for(int i=0;i<9;i++){
-        blist[i].setEnabled(false);}
+            blist[i].setEnabled(false);}
     }
     public void displayGameResults(){
 
     }
-
-    public static void main(String[] args) {
-        new View().finalgo();
+    public void halt(){
+        for(int i=0; i<9; i++){
+            blist[i].setEnabled(false);
+        }
+    }
+    public void clicked(JButton b){
+        if (count % 2 == 1) {
+            b.setText("x");
+            b.setFont(new Font("ARIAL", Font.BOLD, 70));
+            b.setEnabled(false);
+            count++;
+        }
+        else {
+            b.setText("O");
+            b.setFont(new Font("COMIC SANS", Font.BOLD, 69));
+            b.setEnabled(false);
+            count++;
+        }
     }
 }
