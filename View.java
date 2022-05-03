@@ -286,7 +286,7 @@ public class View {
         }
         else{win.setText("TIE GANME");}
 
-        frame.add(win, BorderLayout.CENTER)
+        frame.add(win, BorderLayout.CENTER);
     }
     public void halt(){
         for(int i=0; i<9; i++){
