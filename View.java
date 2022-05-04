@@ -9,12 +9,7 @@ public class View {
     JFrame frame = new JFrame();
     JButton[] blist = new JButton[9];
     JTextField ip = new JTextField();
-    JLabel prompt = new JLabel("ENTER YOUR OPPONENT'S IP");
-    JButton send = new JButton("SEND REQUEST");
     JButton quit = new JButton("QUIT");
-    JButton again = new JButton("PLAY AGAIN");
-    JButton URTURN = new JButton("YOUR TURN MDOE");
-    JButton NOTU = new JButton("NOT YOUR TURN");
 
     JPanel container21 = new JPanel(new GridLayout(2,1));
 
@@ -32,9 +27,7 @@ public class View {
     public void addButtonListener8(ActionListener al){blist[7].addActionListener(al);}
     public void addButtonListener9(ActionListener al){blist[8].addActionListener(al);}
 
-    public void addConnectButtonListener(ActionListener al){
-        send.addActionListener(al);
-    };
+
     public void addQuitButtonListener(ActionListener al){quit.addActionListener(al);}
     /*public void start(){
         frame.setSize(600,600);
@@ -56,6 +49,7 @@ public class View {
         frame.getContentPane().removeAll();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JLabel wait = new JLabel("WAITING");
+        wait.setFont(new Font("Arial", Font.BOLD,56));
         JLabel IP = new JLabel();
             try {
                 IP.setText(InetAddress.getLocalHost().toString());
@@ -71,7 +65,7 @@ public class View {
     public void goToGame() {
         frame.setSize(600,600);
         for(int i=0; i<9; i++){
-            blist[i] = new JButton("") ;
+            blist[i] = new JButton("", ) ;
         }
 
         frame.getContentPane().removeAll();
@@ -88,6 +82,9 @@ public class View {
         container.add(blist[6]);
         container.add(blist[7]);
         container.add(blist[8]);
+        for(JButton b : blist){
+            b.setFont(new Font("Arial", Font.BOLD, 56));
+        }
 
         frame.add(container, BorderLayout.CENTER);
         //buttonss.add(again);
@@ -132,11 +129,6 @@ public class View {
         blist[7].setText(Character.toString(f[2][1]));
         blist[8].setText(Character.toString(f[2][2]));
 
-        for(JButton b : blist ){
-            if(!b.getText().equals("")){
-                b.setEnabled(false);
-            }
-        }
     }
 
     public void showError(String s){
@@ -199,9 +191,5 @@ public class View {
             b.setEnabled(false);
             count++;
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }
