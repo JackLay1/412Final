@@ -116,15 +116,8 @@ public class View {
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.getContentPane().removeAll();
-                container21.add(prompt);
-                container21.add(ip);
-                frame.add(send, BorderLayout.EAST);
-                frame.add(container21, BorderLayout.CENTER);
-                frame.repaint();
-                frame.validate();
+                frame.dispose();
             }
-        });
     }
     public void update(char[][] f){
         blist[0].setText(Character.toString(f[0][0]));
