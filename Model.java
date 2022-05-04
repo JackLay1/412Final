@@ -266,7 +266,6 @@ public class Model {
 			
 			Scanner in = new Scanner(client_sock.getInputStream());
 			String first = in.nextLine();
-			System.out.println(first);
 			if (first.equals("true")) {
 				me = Piece.Cross;
 			} else {
