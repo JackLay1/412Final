@@ -3,7 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
+import java.io.IOException;
 
 public class View {
 	JFrame frame = new JFrame();
@@ -31,8 +33,13 @@ public class View {
 		wait.setFont(new Font("Arial", Font.BOLD,56));
 		JLabel IP = new JLabel();
 		try {
-			IP.setText(InetAddress.getLocalHost().toString());
+			Socket test_sock = new Socket("example.com", 80);
+			String local_host = test_sock.getLocalAddress().getHostAddress().toString();
+			test_sock.close();
+			IP.setText(local_host);
 		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		frame.setSize(600,600);
