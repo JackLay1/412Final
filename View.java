@@ -93,7 +93,7 @@ public class View {
         buttonss.add(quit);
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
-        
+        frame.setVisible(true);
         frame.repaint();
         frame.validate();
 
