@@ -133,7 +133,10 @@ public class Controller {
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
 			view.WaitForOtherPlayer();
-			model.recvMove();
+			int move = model.recvMove();
+			int row = move / 3;
+			int col = move % 3;
+			model.move(row, col);
 			view.update(model.getBoard());
 		}
 		while(true) {
