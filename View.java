@@ -21,12 +21,11 @@ public class View {
 	public void addButtonListener7(ActionListener al){ blist[6].addActionListener(al); }
 	public void addButtonListener8(ActionListener al){ blist[7].addActionListener(al); }
 	public void addButtonListener9(ActionListener al){ blist[8].addActionListener(al); }
-
-	public void addQuitButtonListener(ActionListener al){ 
+    public void addQuitButtonListener(ActionListener al){
 		quit.addActionListener(al);
 	}
 
-	public void waiting() {
+    public void waiting() {
 		frame.getContentPane().removeAll();
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JLabel wait = new JLabel("WAITING");
@@ -48,8 +47,8 @@ public class View {
 		frame.add(IP, BorderLayout.SOUTH);
 		frame.setVisible(true);
 	}
-
 	public void goToGame() {
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setSize(600,600);
 		for(int i=0; i<9; i++) {
 			blist[i] = new JButton("") ;
@@ -101,7 +100,6 @@ public class View {
 		blist[8].setText(Character.toString(f[2][2]));
 
 	}
-
 	public void showError(String s) {
 		JLabel error = new JLabel(s);
 		frame.getContentPane().removeAll();
@@ -110,7 +108,6 @@ public class View {
 		frame.validate();
 
 	}
-
 	public void ItsYourMove() {
 		for(int i=0;i<9;i++) {
 			if(blist[i].getText().equals(" ")) {
@@ -118,13 +115,11 @@ public class View {
 			}
 		}
 	}
-
 	public void WaitForOtherPlayer() {
 		for(int i=0;i<9;i++) {
 			blist[i].setEnabled(false);
 		}
 	}
-
 	public void displayGameResults(char w) {
 		frame.getContentPane().removeAll();
 		JLabel win = new JLabel();
