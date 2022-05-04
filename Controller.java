@@ -6,73 +6,75 @@ public class Controller {
 	View view;
 
 
-	volatile private int _____private_move = 10;
+	volatile private int private_move = 10;
 	private void setupbuttons() {
 		view.addButtonListener1(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 0;
+				private_move = 0;
 			}
 		});
 		view.addButtonListener2(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 1;
+				private_move = 1;
 			}
 		});
 		view.addButtonListener3(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 2;
+				private_move = 2;
 			}
 		});
 		view.addButtonListener4(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 3;
+				private_move = 3;
 			}
 		});
 		view.addButtonListener5(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 4;
+				private_move = 4;
 			}
 		});
 		view.addButtonListener6(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 5;
+				private_move = 5;
 			}
 		});
 		view.addButtonListener7(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 6;
+				private_move = 6;
 			}
 		});
 		view.addButtonListener8(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 7;
+				private_move = 7;
 			}
 		});
 		view.addButtonListener9(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_____private_move = 8;
+				private_move = 8;
 			}
 		});
 	}
 
 	private int getMove() {
-		while(_____private_move == 10) {
+		while(private_move == 10) {
 			try {
 				Thread.sleep(100);
 			} catch(InterruptedException e) {
 				break;
 			}
 		}
-		return _____private_move;
+		int move = private_move;
+		private_move = 10;
+		return move;
 	}
 
 	public Controller() {
