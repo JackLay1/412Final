@@ -69,6 +69,7 @@ public class View {
     }
     
     public void goToGame() {
+        frame.setSize(600,600);
         for(int i=0; i<9; i++){
             blist[i] = new JButton("") ;
         }
