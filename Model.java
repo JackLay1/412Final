@@ -175,7 +175,7 @@ public class Model {
 		} else {
 			Piece w = board[0][2];
 			for(int i = 1; i < 3; i++) {
-				if(!board[i][3-i].equals(w)) {
+				if(!board[i][2-i].equals(w)) {
 					return Piece.None;
 				}
 			}
