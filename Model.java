@@ -319,9 +319,11 @@ public class Model {
 
 	public void quit() {
 		try {
-			PrintWriter w = new PrintWriter(client_sock.getOutputStream());
-			w.print(10);
-			client_sock.close();
+			if(!client_sock.isOutputShutdown()) {
+				PrintWriter w = new PrintWriter(client_sock.getOutputStream());
+				w.print(10);
+				client_sock.close();
+			}
 		} catch(IOException e) {
 			System.err.println("Failed to quit");
 			return;
