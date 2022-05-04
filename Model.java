@@ -295,6 +295,7 @@ public class Model {
 		try {
 			PrintWriter out = new PrintWriter(client_sock.getOutputStream());
 			out.println(!amIFirst);
+			out.flush();
 		} catch (IOException e) {
 			errorCallback.reportError(e.toString());
 			return false;
