@@ -233,14 +233,21 @@ public class Model {
 		}
 	}
 
-	public int recvMove() {
+	public boolean recvMove() {
 		try {
 			Scanner r = new Scanner(client_sock.getInputStream());
 			if(r.hasNextLine()) {
 				int move = Integer.parseInt(r.nextLine());
 				if(move == 10) {
 					quit();
-					return 10;
+					return false;
+				}
+				int row = move / 3;
+				int col = move % 3;
+				if(me.equals(Piece.cross) {
+					board[row][col] = Piece.Nought;
+				} else {
+					board[row][col] = Piece.Cross;
 				}
 				return move;
 			} else {
