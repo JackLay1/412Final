@@ -311,7 +311,7 @@ public class Model {
 			client_sock.close();
 		} catch(IOException e) {
 			System.err.println("Failed to quit");
-			System.exit(1);
+			return;
 		}
 	}
 }
