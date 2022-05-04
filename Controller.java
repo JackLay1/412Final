@@ -133,7 +133,9 @@ public class Controller {
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
 			view.WaitForOtherPlayer();
-			model.recvMove();
+			if(!model.recvMove()) {
+				return;
+			}
 			view.update(model.getBoard());
 		}
 		while(true) {
@@ -150,7 +152,9 @@ public class Controller {
 
 			if(!model.hasEnded()) {
 				view.WaitForOtherPlayer();
-				model.recvMove();
+				if(!model.recvMove()) {
+					return;
+				}
 				view.update(model.getBoard());
 			} else {
 				break;

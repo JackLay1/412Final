@@ -239,7 +239,6 @@ public class Model {
 			if(r.hasNextLine()) {
 				int move = Integer.parseInt(r.nextLine());
 				if(move == 10) {
-					quit();
 					return false;
 				}
 				int row = move / 3;
