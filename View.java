@@ -102,6 +102,7 @@ public class View {
 	}
 	public void showError(String s) {
 		JLabel error = new JLabel(s);
+		error.setFont(new Font("Arial", Font.BOLD, 56));
 		frame.getContentPane().removeAll();
 		frame.add(error, BorderLayout.CENTER);
 		frame.repaint();
@@ -129,7 +130,7 @@ public class View {
 		} else if(w == 'O') {
 			win.setText("O WINS");
 		} else {
-			win.setText("TIE GANME");
+			win.setText("TIE GAME");
 		}
 
 		frame.add(win, BorderLayout.CENTER);
