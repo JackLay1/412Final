@@ -178,6 +178,8 @@ public class View {
         else{win.setText("TIE GANME");}
 
         frame.add(win, BorderLayout.CENTER);
+	fame.repaint();
+        frame.validate();
     }
     public void halt(){
         for(int i=0; i<9; i++){
