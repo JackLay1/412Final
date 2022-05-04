@@ -90,7 +90,7 @@ public class View {
         container.add(blist[8]);
 
         frame.add(container, BorderLayout.CENTER);
-        buttonss.add(again);
+        //buttonss.add(again);
         buttonss.add(quit);
         frame.add(buttonss, BorderLayout.SOUTH);
         buttonss.setVisible(true);
@@ -99,7 +99,7 @@ public class View {
         frame.validate();
 
 
-        again.addActionListener(new ActionListener() {
+        /*again.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < 9; i++) {
@@ -113,11 +113,11 @@ public class View {
                     }
                 }
             }
-        });
+        });*/
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
+                System.exit(0);
             }
 	});
     }
