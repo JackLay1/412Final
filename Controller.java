@@ -127,8 +127,9 @@ public class Controller {
 				model.quit();
 			}
 		}));
-
+		
 		view.goToGame();
+		setupbuttons();
 		boolean first = model.amIFirstPlayer();
 		if(!first) {
 			view.WaitForOtherPlayer();
