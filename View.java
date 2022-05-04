@@ -118,6 +118,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
             }
+	});
     }
     public void update(char[][] f){
         blist[0].setText(Character.toString(f[0][0]));
