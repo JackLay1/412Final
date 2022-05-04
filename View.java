@@ -8,14 +8,9 @@ import java.net.UnknownHostException;
 public class View {
 	JFrame frame = new JFrame();
 	JButton[] blist = new JButton[9];
-	JTextField ip = new JTextField();
 	JButton quit = new JButton("QUIT");
 
 	JPanel container21 = new JPanel(new GridLayout(2,1));
-
-	JButton[][] buttons = new JButton[3][3];
-	char game[][] = new char[3][3];
-	int count = 1;
 
 	public void addButtonListener1(ActionListener al){ blist[0].addActionListener(al); }
 	public void addButtonListener2(ActionListener al){ blist[1].addActionListener(al); }
@@ -29,10 +24,6 @@ public class View {
 
 	public void addQuitButtonListener(ActionListener al){ 
 		quit.addActionListener(al);
-	}
-
-	public String getIP() {
-		return ip.getText();
 	}
 
 	public void waiting() {
@@ -142,26 +133,5 @@ public class View {
 		frame.add(win, BorderLayout.CENTER);
 		frame.repaint();
 		frame.validate();
-	}
-
-	public void halt() {
-		for(int i=0; i<9; i++){
-			blist[i].setEnabled(false);
-		}
-	}
-
-	public void clicked(JButton b) {
-		if (count % 2 == 1) {
-			b.setText("x");
-			b.setFont(new Font("ARIAL", Font.BOLD, 70));
-			b.setEnabled(false);
-			count++;
-		}
-		else {
-			b.setText("O");
-			b.setFont(new Font("COMIC SANS", Font.BOLD, 69));
-			b.setEnabled(false);
-			count++;
-		}
 	}
 }
