@@ -227,6 +227,7 @@ public class Model {
 		try {
 			PrintWriter w = new PrintWriter(client_sock.getOutputStream());
 			w.print(row * 3 + col);
+			w.flush();
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
 		}
