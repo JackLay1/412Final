@@ -244,19 +244,19 @@ public class Model {
 				}
 				int row = move / 3;
 				int col = move % 3;
-				if(me.equals(Piece.cross) {
+				if(me.equals(Piece.Cross)) {
 					board[row][col] = Piece.Nought;
 				} else {
 					board[row][col] = Piece.Cross;
 				}
-				return move;
+				return true;
 			} else {
-				return 10;
+				return false;
 			}
 
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
-			return 11;
+			return false;
 		}
 	}
 
