@@ -134,6 +134,7 @@ public class Controller {
 		if(!first) {
 			view.WaitForOtherPlayer();
 			if(!model.recvMove()) {
+				view.showError("Other player quit");
 				return;
 			}
 			view.update(model.getBoard());
@@ -144,7 +145,10 @@ public class Controller {
 				int move = getMove();
 				int row = move / 3;
 				int col = move % 3;
-				model.move(row, col);
+				if(!model.move(row, col)) {
+					view.showError("Invalid move");
+					return;
+				}
 				view.update(model.getBoard());
 			} else {
 				break;
@@ -153,6 +157,7 @@ public class Controller {
 			if(!model.hasEnded()) {
 				view.WaitForOtherPlayer();
 				if(!model.recvMove()) {
+					view.showError("Other player quit");
 					return;
 				}
 				view.update(model.getBoard());
