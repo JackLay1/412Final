@@ -157,7 +157,7 @@ public class View {
     public void ItsYourMove(){
 
         for(int i=0;i<9;i++) {
-            if (blist[i].getText() == " ") {
+            if (blist[i].getText().equals(" ")) {
                 blist[i].setEnabled(true);
             }
         }
