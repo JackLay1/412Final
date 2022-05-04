@@ -236,13 +236,17 @@ public class Model {
 	public int recvMove() {
 		try {
 			Scanner r = new Scanner(client_sock.getInputStream());
-			int move = r.nextInt();
-			if(move == 10) {
-				quit();
+			if(r.hasNextInt()) {
+				int move = r.nextInt();
+				if(move == 10) {
+					quit();
+					return 10;
+				}
+				return move;
+			} else {
 				return 10;
 			}
 
-			return move;
 		} catch(IOException e) {
 			errorCallback.reportError(e.toString());
 			return 11;
