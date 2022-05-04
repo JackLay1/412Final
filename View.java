@@ -37,6 +37,7 @@ public class View {
 			String local_host = test_sock.getLocalAddress().getHostAddress().toString();
 			test_sock.close();
 			IP.setText(local_host);
+            IP.setFont(new Font("Arial",Font.BOLD, 28));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -127,6 +128,7 @@ public class View {
 	public void displayGameResults(char w) {
 		frame.getContentPane().removeAll();
 		JLabel win = new JLabel();
+        win.setFont(new Font("Arial",Font.BOLD, 28));
 		if(w == 'X') {
 			win.setText("X wins");
 		} else if(w == 'O') {
