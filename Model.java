@@ -319,7 +319,7 @@ public class Model {
 		try {
 			if(!client_sock.isOutputShutdown()) {
 				PrintWriter w = new PrintWriter(client_sock.getOutputStream());
-				w.print(10);
+				w.println(10);
 				w.flush();
 				client_sock.close();
 			}
