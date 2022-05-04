@@ -236,8 +236,8 @@ public class Model {
 	public int recvMove() {
 		try {
 			Scanner r = new Scanner(client_sock.getInputStream());
-			if(r.hasNextInt()) {
-				int move = r.nextInt();
+			if(r.hasNextLine()) {
+				int move = Integer.parseInt(r.nextLine());
 				if(move == 10) {
 					quit();
 					return 10;
