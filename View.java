@@ -10,8 +10,6 @@ public class View {
 	JButton[] blist = new JButton[9];
 	JButton quit = new JButton("QUIT");
 
-	JPanel container21 = new JPanel(new GridLayout(2,1));
-
 	public void addButtonListener1(ActionListener al){ blist[0].addActionListener(al); }
 	public void addButtonListener2(ActionListener al){ blist[1].addActionListener(al); }
 	public void addButtonListener3(ActionListener al){ blist[2].addActionListener(al); }
